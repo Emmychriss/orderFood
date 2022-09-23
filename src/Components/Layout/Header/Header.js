@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 
-import CartBtn from "./CartBtn";
-import mealsImage from "../../assets/freshMeals.jpg";
+import CartBtn from "../HeaderCartBtn/CartBtn";
+import mealsImage from "../../../assets/freshMeals.jpg";
 import classes from "./Header.module.css";
 
-const header = (props) => {
+const Header = (props) => {
   return (
     <Fragment>
       <header className={classes.header}>
@@ -18,4 +18,4 @@ const header = (props) => {
   );
 };
 
-export default header;
+export default Header;

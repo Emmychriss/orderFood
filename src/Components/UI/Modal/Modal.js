@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 import classes from "./Modal.module.css";
-import Backdrop from "./Backdrop";
+import Backdrop from "../Backdrop/Backdrop";
 
 const Modal = (props) => {
   return (
     <Fragment>
-      <Backdrop closeModal={props.closeModal}/>
+      <Backdrop closeModal={props.closeModal} />
       <div className={classes.modal}>{props.children}</div>;
     </Fragment>
   );
