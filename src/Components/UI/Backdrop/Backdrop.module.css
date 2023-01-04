@@ -7,7 +7,3 @@
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 20;
 }
-
-.backdrop:hover {
-  cursor: pointer;
-}
