@@ -8,6 +8,8 @@ import Checkout from "./Checkout/Checkout";
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
 
   const cartCtx = useContext(CartContext);
 
@@ -56,8 +58,9 @@ const Cart = (props) => {
     </div>
   );
 
-  const confirmOrderHandler = (userdata) => {
-    return fetch(
+  const confirmOrderHandler = async (userdata) => {
+    setIsSubmitting(true);
+    await fetch(
       "https://foodorder-dfe69-default-rtdb.firebaseio.com/orderInfo.json",
       {
         method: "POST",
@@ -67,10 +70,12 @@ const Cart = (props) => {
         }),
       }
     );
+    setIsSubmitting(false);
+    setDidSubmit(true);
   };
 
-  return (
-    <Modal closeModal={props.onCartClose}>
+  const cartModalContent = (
+    <>
       {cartItems}
 
       <div className={classes.total}>
@@ -86,6 +91,18 @@ const Cart = (props) => {
       )}
 
       {!isCheckout && modalActions}
+    </>
+  );
+
+  const isSubmittingModalContent = <p>Sending order data</p>;
+
+  const suubmittedModalContent = <p>Successfully submitted orders</p>;
+
+  return (
+    <Modal closeModal={props.onCartClose}>
+      {!isSubmitting && !didSubmit && cartModalContent}
+      {isSubmitting && isSubmittingModalContent}
+      {!isSubmitting && didSubmit && suubmittedModalContent}
     </Modal>
   );
 };
