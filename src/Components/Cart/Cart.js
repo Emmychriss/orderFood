@@ -5,6 +5,7 @@ import classes from "./Cart.module.css";
 import CartContext from "../../store/CartContext";
 import CartItem from "./CartItem/CartItem";
 import Checkout from "./Checkout/Checkout";
+import swal from "sweetalert";
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
@@ -97,15 +98,22 @@ const Cart = (props) => {
 
   const isSubmittingModalContent = <p>Sending order data</p>;
 
-  const suubmittedModalContent = <p>Successfully submitted orders</p>;
-
   return (
-    <Modal closeModal={props.onCartClose}>
-      {!isSubmitting && !didSubmit && cartModalContent}
-      {isSubmitting && isSubmittingModalContent}
-      {!isSubmitting && didSubmit && suubmittedModalContent}
-    </Modal>
-  );
-};
+    <div>
+
+      <Modal closeModal={props.onCartClose}>
+        {!isSubmitting && !didSubmit && cartModalContent}
+        {isSubmitting && isSubmittingModalContent}
+      </Modal>
+        {!isSubmitting &&
+          didSubmit &&
+          swal({
+            title: "Soft!",
+            text: "You successfully submitted your order",
+            icon: "success",
+          })}
+      
+    </div>
+)};
 
 export default Cart;
