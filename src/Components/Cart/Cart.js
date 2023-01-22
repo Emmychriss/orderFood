@@ -100,20 +100,19 @@ const Cart = (props) => {
 
   return (
     <div>
-
       <Modal closeModal={props.onCartClose}>
         {!isSubmitting && !didSubmit && cartModalContent}
         {isSubmitting && isSubmittingModalContent}
       </Modal>
-        {!isSubmitting &&
-          didSubmit &&
-          swal({
-            title: "Soft!",
-            text: "You successfully submitted your order",
-            icon: "success",
-          })}
-      
+      {!isSubmitting &&
+        didSubmit &&
+        swal({
+          title: "Soft!",
+          text: "You successfully submitted your order",
+          icon: "success",
+        })}
     </div>
-)};
+  );
+};
 
 export default Cart;
